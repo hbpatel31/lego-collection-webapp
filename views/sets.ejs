@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lego Collection</title>
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+
+  <body tabindex="-1">
+    <div class="container mx-auto">
+      <!-- Loop through sets and display them in a table -->
+      <% if (sets && sets.length > 0) { %>
+      <div class="overflow-x-auto">
+        <table
+          style="border: 2px solid black"
+          class="min-w-full bg-white shadow-md rounded-lg overflow-hidden divide-y divide-gray-200 border border-black"
+        >
+          <thead class="bg-gray-50">
+            <tr class="text-center" style="border: 2px solid black">
+              <th
+                class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                Image
+              </th>
+              <th
+                style="border: 2px solid black"
+                class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                Name
+              </th>
+              <th
+                style="border: 2px solid black"
+                class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                Theme
+              </th>
+              <th
+                style="border: 2px solid black"
+                class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                Year
+              </th>
+              <th
+                style="border: 2px solid black"
+                class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                Parts
+              </th>
+              <th
+                style="border: 2px solid black"
+                class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                Details
+              </th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            <% sets.forEach(set => { %>
+            <tr class="text-left" style="border: 2px solid black">
+              <td class="px-6 py-4" style="border: 2px solid black">
+                <div class="flex items-center space-x-3">
+                  <div class="flex-shrink-0">
+                    <img
+                      class="w-3/6 rounded-lg"
+                      src="<%= set.img_url %>"
+                      alt="<%= set.name %>"
+                    />
+                  </div>
+                </div>
+              </td>
+              <td
+                style="border: 2px solid black"
+                class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+              >
+                <%= set.name %>
+              </td>
+              <td
+                class="px-6 py-4 whitespace-nowrap"
+                style="border: 2px solid black"
+              >
+                <a
+                  href="/lego/sets?theme=<%= set.theme %>"
+                  class="text-indigo-600 hover:text-indigo-900"
+                >
+                  <%= set.theme %>
+                </a>
+              </td>
+              <td
+                style="border: 2px solid black"
+                class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+              >
+                <%= set.year %>
+              </td>
+              <td
+                style="border: 2px solid black"
+                class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+              >
+                <%= set.num_parts %>
+              </td>
+              <td
+                class="px-6 py-4 whitespace-nowrap text-sm font-medium"
+                style="border: 2px solid black"
+              >
+                <a
+                  href="/lego/sets/<%= set.set_num %>"
+                  class="text-indigo-600 hover:text-indigo-900"
+                  >View Details</a
+                >
+              </td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+      <% } else { %>
+      <p>No LEGO sets found.</p>
+      <% } %>
+    </div>
+  </body>
+</html>
